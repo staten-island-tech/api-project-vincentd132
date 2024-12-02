@@ -4,13 +4,17 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Api Project</title>
-    <link rel="stylesheet" href="/path/to/your/compiled/css/main.css" />
+    <title>Rick And Morty API</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <h1 class="text-4xl font-bold text-center mt-6">Rick And Morty</h1>
     <div class="flex flex-wrap justify-center bg-white p-6 mt-4 rounded-lg shadow-md border-spacing-8 gap-4" id="people"></div>
-    <script type="module" src="/main.js"></script>
+    <div class="button-container text-center mt-6">
+      <button class="btn" id="showAllCharacters">All Characters</button>
+      <button class="btn" id="showHumans">Humans</button>
+      <button class="btn" id="showAlive">Alive</button>
+    </div>
+    <script type="module" src="main.js"></script> 
   </body>
 </html>
-

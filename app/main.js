@@ -1,5 +1,7 @@
 import "./style.css";
 
+let characters = [];
+
 async function getData() {
   try {
     const response = await fetch("https://rickandmortyapi.com/api/character");
@@ -7,12 +9,14 @@ async function getData() {
       throw new Error("Failed to fetch data");
     } else {
       const data = await response.json();
-      displayCharacter(data.results);
+      characters = data.results;
+      displayCharacter(characters);
     }
   } catch (error) {
     alert(`Error: ${error.message}`);
   }
 }
+
 function displayCharacter(characters) {
   const container = document.querySelector("#people");
   container.innerHTML = "";
@@ -32,3 +36,21 @@ function displayCharacter(characters) {
 }
 
 getData();
+
+document.querySelector("#showAllCharacters").addEventListener("click", () => {
+  displayCharacter(characters);
+});
+
+document.querySelector("#showHumans").addEventListener("click", () => {
+  const humans = characters.filter(
+    (character) => character.species === "Human"
+  );
+  displayCharacter(humans);
+});
+
+document.querySelector("#showAlive").addEventListener("click", () => {
+  const aliveCharacters = characters.filter(
+    (character) => character.status === "Alive"
+  );
+  displayCharacter(aliveCharacters);
+});
