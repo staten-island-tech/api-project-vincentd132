@@ -54,3 +54,10 @@ document.querySelector("#showAlive").addEventListener("click", () => {
   );
   displayCharacter(aliveCharacters);
 });
+
+document.querySelector("#showDead").addEventListener("click", () => {
+  const deadCharacters = characters.filter(
+    (character) => character.status === "Dead"
+  );
+  displayCharacter(deadCharacters);
+});
