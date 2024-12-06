@@ -21,6 +21,11 @@ function displayCharacter(characters) {
   const container = document.querySelector("#people");
   container.innerHTML = "";
 
+  if (characters.length === 0) {
+    container.innerHTML = "<p>No characters found</p>";
+    return;
+  }
+
   characters.forEach((character) => {
     const characterCardHTML = `
       <div class="character-card">
@@ -33,6 +38,18 @@ function displayCharacter(characters) {
     `;
     container.insertAdjacentHTML("beforeend", characterCardHTML);
   });
+}
+
+function searchCharacters(query) {
+  if (!query.trim()) {
+    displayCharacter(characters);
+    return;
+  }
+
+  const filteredCharacters = characters.filter((character) =>
+    character.name.toLowerCase().includes(query.toLowerCase())
+  );
+  displayCharacter(filteredCharacters);
 }
 
 getData();
@@ -60,4 +77,9 @@ document.querySelector("#showDead").addEventListener("click", () => {
     (character) => character.status === "Dead"
   );
   displayCharacter(deadCharacters);
+});
+
+document.querySelector("#search").addEventListener("input", (event) => {
+  const searchQuery = event.target.value;
+  searchCharacters(searchQuery);
 });
